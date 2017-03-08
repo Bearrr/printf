@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 14:21:41 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 17:47:40 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:23:12 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,21 @@ int		use_d_flags(t_flags flag, int f, va_list ap, int size)
 	signed short  h;
 //	hh = va_arg(ap, int);
 	if (size == 1)
-		f = ((test_d(va_arg(ap, long), flag)) + f);
+		f = ((test_d1(va_arg(ap, long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "j") == 0)
-		f = ((test_d(va_arg(ap, intmax_t), flag)) + f);
+		f = ((test_d1(va_arg(ap, intmax_t), flag)) + f);
 	else if (ft_strcmp(flag.letter, "z") == 0)
-		f = ((test_d(va_arg(ap, size_t), flag)) + f);
+		f = ((test_d1(va_arg(ap, size_t), flag)) + f);
 	else if (ft_strcmp(flag.letter, "ll") == 0)
-		f = ((test_d(va_arg(ap, long long), flag)) + f);
+		f = ((test_d1(va_arg(ap, long long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "l") == 0)
-		f = ((test_d(va_arg(ap, long), flag)) + f);
+		f = ((test_d1(va_arg(ap, long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "h") == 0)
-		f = (test_d(h = va_arg(ap, int), flag) + f);
+		f = (test_d1(h = va_arg(ap, int), flag) + f);
 	else if (ft_strcmp(flag.letter,"hh") == 0)
-		f = (test_d(hh = va_arg(ap, int), flag) + f);
+		f = (test_d1(hh = va_arg(ap, int), flag) + f);
 	else
-		f = (test_d(va_arg(ap, int), flag) + f);
+		f = (test_d1(va_arg(ap, int), flag) + f);
 	return (f);
 }
 
@@ -93,21 +93,21 @@ int		use_u_flags(t_flags flag, int f, va_list ap, int size)
 
 //	printf("LETTER %s\n", flag.letter);
 	if (size == 1)
-		f = ((test_u(va_arg(ap, long), flag)) + f);
+		f = ((test_u1(va_arg(ap, long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "j") == 0)
-		f = ((test_u(va_arg(ap, uintmax_t), flag)) + f);
+		f = ((test_u1(va_arg(ap, uintmax_t), flag)) + f);
 	else if (ft_strcmp(flag.letter, "z") == 0)
-		f = ((test_u(va_arg(ap, size_t), flag)) + f);
+		f = ((test_u1(va_arg(ap, size_t), flag)) + f);
 	else if (ft_strcmp(flag.letter, "ll") == 0)
-		f = ((test_u(va_arg(ap, long long), flag)) + f);
+		f = ((test_u1(va_arg(ap, long long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "l") == 0)
-		f = ((test_u(va_arg(ap, long), flag)) + f);
+		f = ((test_u1(va_arg(ap, long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "h") == 0)
-		f = (test_u(h = va_arg(ap, int), flag) + f);
+		f = (test_u1(h = va_arg(ap, int), flag) + f);
 	else if (ft_strcmp(flag.letter,"hh") == 0)
-		f = (test_u(hh = va_arg(ap, int), flag) + f);
+		f = (test_u1(hh = va_arg(ap, int), flag) + f);
 	else 
-		f = (test_u(va_arg(ap, unsigned int), flag) + f);
+		f = (test_u1(va_arg(ap, unsigned int), flag) + f);
 	return (f);
 }	
 
@@ -119,19 +119,19 @@ int		use_x_flags(t_flags flag, int f, va_list ap, int size)
 //	printf("LETTER %s\n", flag.letter);
 
 	if (ft_strcmp(flag.letter, "j") == 0)
-		f = ((test_x(va_arg(ap, intmax_t), flag, size)) + f);
+		f = ((test_x1(va_arg(ap, intmax_t), flag, size)) + f);
 	else if (ft_strcmp(flag.letter, "z") == 0)
-		f = ((test_x(va_arg(ap, size_t), flag, size)) + f);
+		f = ((test_x1(va_arg(ap, size_t), flag, size)) + f);
 	else if (ft_strcmp(flag.letter, "ll") == 0)
-		f = ((test_x(va_arg(ap, long long), flag, size)) + f);
+		f = ((test_x1(va_arg(ap, long long), flag, size)) + f);
 	else if (ft_strcmp(flag.letter, "l") == 0)
-		f = ((test_x(va_arg(ap, long), flag, size)) + f);
+		f = ((test_x1(va_arg(ap, long), flag, size)) + f);
 	else if (ft_strcmp(flag.letter, "h") == 0)
-		f = (test_x(h = va_arg(ap, int), flag, size) + f);
+		f = (test_x1(h = va_arg(ap, int), flag, size) + f);
 	else if (ft_strcmp(flag.letter,"hh") == 0)
-		f = (test_x(hh = va_arg(ap, int), flag, size) + f);
+		f = (test_x1(hh = va_arg(ap, int), flag, size) + f);
 	else
-		f = (test_x(va_arg(ap, unsigned int), flag, size) + f);
+		f = (test_x1(va_arg(ap, unsigned int), flag, size) + f);
 	return (f);
 }	
 
@@ -142,21 +142,21 @@ int		use_o_flags(t_flags flag, int f, va_list ap, int size)
 
 //	printf("LETTER %s\n", flag.letter);
 	if (size == 1)
-		f = ((test_o(va_arg(ap, long), flag)) + f);
+		f = ((test_o1(va_arg(ap, long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "j") == 0)
-		f = ((test_o(va_arg(ap, uintmax_t), flag)) + f);
+		f = ((test_o1(va_arg(ap, uintmax_t), flag)) + f);
 	else  if (ft_strcmp(flag.letter, "z") == 0)
-		f = ((test_o(va_arg(ap, size_t), flag)) + f);
+		f = ((test_o1(va_arg(ap, size_t), flag)) + f);
 	else  if (ft_strcmp(flag.letter, "ll") == 0)
-		f = ((test_o(va_arg(ap, long long), flag)) + f);
+		f = ((test_o1(va_arg(ap, long long), flag)) + f);
 	else if (ft_strcmp(flag.letter, "l") == 0)
-		f = ((test_o(va_arg(ap, long), flag)) + f);
+		f = ((test_o1(va_arg(ap, long), flag)) + f);
 	else  if (ft_strcmp(flag.letter, "h") == 0)
-		f = (test_o(h = va_arg(ap, int), flag) + f);
+		f = (test_o1(h = va_arg(ap, int), flag) + f);
 	else  if (ft_strcmp(flag.letter,"hh") == 0)
-		f = (test_o(hh = va_arg(ap, int), flag) + f);
+		f = (test_o1(hh = va_arg(ap, int), flag) + f);
 	else 
-		f = (test_o(va_arg(ap, unsigned  int), flag) + f);
+		f = (test_o1(va_arg(ap, unsigned  int), flag) + f);
 	return (f);
 }
 
@@ -166,19 +166,19 @@ int		use_s_flags(t_flags flag, int f, va_list ap, int size)
 //		write(1, "S", 1);
 //		f = ((test_s(va_arg(ap, wchar_t *), flag)) + f);
 //	else 
-		f = (test_s(va_arg(ap, char *), flag) + f);
+		f = (test_s1(va_arg(ap, char *), flag) + f);
 	return (f);
 }
 
 int		use_c_flags(t_flags flag, int f, va_list ap)
 {
-	f = (test_c(va_arg(ap, int), flag) + f);
+	f = (test_c1(va_arg(ap, int), flag) + f);
 	return (f);
 }
 
 int		use_p_flags(t_flags flag, int f, va_list ap)
 {
-	f = (test_p(va_arg(ap, void *), flag) + f);
+	f = (test_p1(va_arg(ap, void *), flag) + f);
 	return (f);
 }
 
