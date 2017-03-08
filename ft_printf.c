@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 18:17:45 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:37:03 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -485,7 +485,7 @@ int		ft_printf(char *format, ...)
 				if (!check_format(&format[i + 1]) 
 					|| (!check_type(&format[i + 1], x)))
 				 {
-					 f = test_c(my_ft_isprint(&format[i + 1], x), flag) + f;
+					 f = test_c1(my_ft_isprint(&format[i + 1], x), flag) + f;
 					 i++;
 				 }
 			}
@@ -514,9 +514,9 @@ int main()
 {
 	int i;
 
-	ft_printf("%20hho|\t|%20ho|", "4294967296", "4294967296","4294967296","4294967296");
+	ft_printf("%0i", 42);
 	write (1, "\n", 1);
-	i = printf("%20ho|\t|%20ho|", "4294967296", "4294967296","4294967296","4294967296");
+	i = printf("%0i", 42);
 	printf("%d\n", i);
 
 	return(0);
