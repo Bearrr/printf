@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 17:50:11 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:17:45 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		check_percent(char *format)
 	return (j);
 }
 
-int		test_p(void *x, t_flags flag)
+int		test_p1(void *x, t_flags flag)
 {
 	int f;
     char *number;
@@ -133,7 +133,7 @@ int		test_p(void *x, t_flags flag)
     return(f);
 }
 
-int     test_c(char c, t_flags flag)
+int     test_c1(char c, t_flags flag)
 {
 	int f;
 
@@ -152,7 +152,7 @@ int     test_c(char c, t_flags flag)
     return(f);
 }
 
-int     test_o(uintmax_t i, t_flags flag)
+int     test_o1(uintmax_t i, t_flags flag)
 {
     int f;
     char *number;
@@ -194,7 +194,7 @@ int     test_o(uintmax_t i, t_flags flag)
 		free(number);
     return(f);
 }
-int		test_x(uintmax_t x, t_flags flag, int size)
+int		test_x1(uintmax_t x, t_flags flag, int size)
 {
 	int f;
     char *number;
@@ -249,7 +249,7 @@ int		test_x(uintmax_t x, t_flags flag, int size)
     return(f);
 }
 
-int		test_u(uintmax_t i, t_flags flag)
+int		test_u1(uintmax_t i, t_flags flag)
 {
 	int f;
 	int j;
@@ -284,7 +284,7 @@ int		test_u(uintmax_t i, t_flags flag)
     return(f);
 }
 
-int		test_s(char *str, t_flags flag)
+int		test_s1(char *str, t_flags flag)
 {
 	int f;
 	int i;
@@ -328,7 +328,7 @@ int		test_s(char *str, t_flags flag)
 	return(f);
 }
 
-int		test_d(intmax_t i, t_flags flag)
+int		test_d1(intmax_t i, t_flags flag)
 {
 	int f;
 	char *number;
