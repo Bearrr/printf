@@ -6,13 +6,12 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 17:55:34 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/06 18:20:14 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:06:20 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include "printf.h"
+#include "ft_printf.h"
 
 static	int     check_flag(int a, int flag)
 {
