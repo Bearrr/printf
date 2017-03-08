@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 15:57:45 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 15:26:22 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 19:50:36 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
 	int p;
 
 	p = 0;
-//	printf("YA tyt teper");
-//	printf("F22 == %d\n", f);
+//	printf("F22 == %d\n", i);
     if (flag.minus == 0 && flag.plus != 0 && flag.zero == 0 && flag.accuracy == 0)
 	{
         f = width_work(flag, i) + f;
@@ -56,7 +55,10 @@ int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
     else if (flag.accuracy != 0 && i < 0)
         *number = my_ft_itoa(i, 0);
     else
+	{
+//		printf("YA TYT");
         *number = ft_itoa_base(i, 10, 2);
+	}
     if (flag.minus == 0 && p == 0)
 	{
 		if (flag.space == 0)
@@ -78,7 +80,6 @@ int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
         write(1, "-", 1);
         f++;
     }
-//	printf("F2 == %d\n", f);
 	return (f);
 }
 

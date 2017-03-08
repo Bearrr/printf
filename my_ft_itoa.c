@@ -6,13 +6,13 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:31:54 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/06 16:22:16 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 19:12:31 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 
 static	int	len(long int b)
@@ -34,9 +34,9 @@ static	int	len(long int b)
 
 char		*my_ft_itoa(long int n, int flag)
 {
-	long int f;
+	int f;
 	char	*mass;
-	long	int	a;
+	long int	a;
 
 	a = 0;
 	f = len(n);

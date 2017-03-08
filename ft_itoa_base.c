@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:43:39 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 18:05:27 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 19:52:57 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			int_len(intmax_t nbr, int base)
 
 char		*ft_itoa_base(intmax_t nbr, int base, int flag)
 {
-	intmax_t a;
+	int a;
 	int f;
 	char *mass;
 
@@ -57,7 +57,7 @@ char		*ft_itoa_base(intmax_t nbr, int base, int flag)
 		a = nbr % base;
 		if (a < 0)
 			a = -a;
-		if (a > 9)
+		if (a > 9 && flag != 2)
 			a = check_flag(a, flag);
 		nbr = nbr / base;
 		mass[f - 1] = a + '0';

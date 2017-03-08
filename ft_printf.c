@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 18:37:03 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 19:51:08 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +319,7 @@ int		test_s1(char *str, t_flags flag)
 		while (str[i])
 		{
 			write(1, &str[i], 1);
-			i++;
+4			i++;
 			f++;
 		}
 */
@@ -328,7 +328,7 @@ int		test_s1(char *str, t_flags flag)
 	return(f);
 }
 
-int		test_d1(intmax_t i, t_flags flag)
+int		test_d1(int i, t_flags flag)
 {
 	int f;
 	char *number;
@@ -336,40 +336,8 @@ int		test_d1(intmax_t i, t_flags flag)
 
 	f = 0;
 	j = 0;
+//	printf("YA TYT %d\n", i);
 	number = NULL;
-/*
-	if (flag.zero != 0 && i < 0 && flag.accuracy == 0)
-	{
-		write(1, "-", 1);
-		f++;
-		number = my_ft_itoa(i, 0); 
-	}
-	else if (flag.plus != 0 && flag.minus == 0 && flag.accuracy == 0)
-	{
-		write(1, "+", 1);
-		f++;
-		number = my_ft_itoa(i, 0); 
-	}
-	else if (flag.plus != 0 && flag.minus != 0 && flag.zero == 0)
-		number = my_ft_itoa(i, 2); 
-	else if (flag.accuracy != 0 && i < 0)
-		number = my_ft_itoa(i, 0);
-	else 
-		number = ft_itoa_base(i, 10, 2);
-	if (flag.minus == 0)
-		f = width_work(flag, i) + f;
-	if (flag.accuracy == 0 && i == 0)
-		return (f);
-	if (flag.accuracy != 0 && flag.plus != 0 && i > 0)
-	{		
-		write(1, "+", 1);
-		f++;
-	}
-	if (flag.accuracy != 0 && i < 0)
-	{
-		write(1, "-", 1);
-		f++;
-		}*/
 	if (flag.minus != 0 || flag.accuracy != 0)
         flag.zero = 0;
 	if (flag.plus != 0  || flag.minus != 0 || i < 0) 
@@ -386,23 +354,13 @@ int		test_d1(intmax_t i, t_flags flag)
 	}
 	if (flag.accuracy == -1 && i == 0)
 		return (f);
-//	printf("F1 == %d\n", flag.space);
 	if (flag.space != 0 &&  flag.plus == 0 && flag.minus == 0)
 	{
 		write (1, " ", 1);
 		f++;
 	}
-//	printf("F1 == %d\n", f);
 	f = wr_accuracy(flag, i, f, &number) + f;
 	f = accuracy_work(flag, i) + f;
-//	printf("F2 == %d\n", f);
-//	if (flag.space != 0 && flag.plus == 0 && i > 0 && flag.width == 0)
-//	{
-//		write (1, " ", 1);
-//		f++;
-//	}
-//	printf("F3 == %d\n", f);
-//	printf("F == %d\n", f);
 	while (number[j])
 	{
  		write(1, &number[j], 1);
@@ -411,7 +369,6 @@ int		test_d1(intmax_t i, t_flags flag)
 	}
 	if (flag.minus != 0)
 		f = width_work(flag, i) + f;
-//	printf("%s\n", number);
 	if (number != NULL)
 		free(number);
 	return(f);
@@ -514,9 +471,9 @@ int main()
 {
 	int i;
 
-	ft_printf("%0i", 42);
+	ft_printf("%-i", -42);
 	write (1, "\n", 1);
-	i = printf("%0i", 42);
+	i = printf("%-i", -42);
 	printf("%d\n", i);
 
 	return(0);
