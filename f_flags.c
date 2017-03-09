@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 16:01:46 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 20:20:01 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 13:55:01 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,15 +130,15 @@ t_flags		check_flags(char *format, int x)
 	t_flags flag;
 
 	flags_zero(&flag);
-	if (my_ft_strchr(format, '#', x, 0))
+	if (my_ft_strchr(format, '#', x))
 		flag.hash = 1;
-	if (my_ft_strchr(format, '+', x, 0))
+	if (my_ft_strchr(format, '+', x))
 		flag.plus = 1;
-	if (my_ft_strchr(format, '-', x, 0))
+	if (my_ft_strchr(format, '-', x))
 		flag.minus = 1;
-	if (my_ft_strchr(format, ' ', x, 0))
+	if (my_ft_strchr(format, ' ', x))
 		flag.space = 1;
-	if (my_ft_strchr(format, '.', x, 0))
+	if (my_ft_strchr(format, '.', x))
 		check_accuracy(format, &flag);
 	check_width(format, &flag, x);
 	check_zero(format, &flag);

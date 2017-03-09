@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 12:48:18 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 13:57:39 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,10 @@ int		check_percent(char *format)
 	}
 	if (ft_strchr("sSpdDioOuUxXcC", format[i]))
 		j++;
-/*	else 
-		while (format[i])
-		{
-			write(1, &format[i], 1);
-			i++;
-			}*/
 	return (j);
 }
 
-int		test_p1(void *x, t_flags flag)
+int		type_p(void *x, t_flags flag)
 {
 	int f;
     char *number;
@@ -117,8 +111,6 @@ int		test_p1(void *x, t_flags flag)
 		}
 	}
 	f = saccuracy_work(flag, number) + f;
-//	write(1, "0x", 2);
-//	f += 2;
 	j = 0;
 	while (number[j])
     {
@@ -133,16 +125,11 @@ int		test_p1(void *x, t_flags flag)
     return(f);
 }
 
-int     test_c1(char c, t_flags flag)
+int     type_c(char c, t_flags flag)
 {
 	int f;
 
 	f = 0;
-//	if (c == 0)
-//	{
-//		ft_putchar('\0');
-//		f++;
-//	}
 	f = wr_c_accuracy(flag, f);
 //	f = c_accuracy_work(flag, c) + f;
     ft_putchar(c);
@@ -152,7 +139,7 @@ int     test_c1(char c, t_flags flag)
     return(f);
 }
 
-int     test_o1(uintmax_t i, t_flags flag)
+int     type_o(uintmax_t i, t_flags flag)
 {
     int f;
     char *number;
@@ -177,11 +164,6 @@ int     test_o1(uintmax_t i, t_flags flag)
     number = ft_uitoa_base(i, 8, 2);
 	f = wr_o_uaccuracy(flag, number, f, 'o') + f;
 	f = o_uaccuracy_work(flag, number, 'o') + f;
-/*	if (flag.hash != 0)
-	{
-		write (1, "0", 1);
-		f++;
-		}*/
     while (number[j])
     {
         write(1, &number[j], 1);
@@ -194,7 +176,7 @@ int     test_o1(uintmax_t i, t_flags flag)
 		free(number);
     return(f);
 }
-int		test_x1(uintmax_t x, t_flags flag, int size)
+int		type_x(uintmax_t x, t_flags flag, int size)
 {
 	int f;
     char *number;
@@ -249,7 +231,7 @@ int		test_x1(uintmax_t x, t_flags flag, int size)
     return(f);
 }
 
-int		test_u1(uintmax_t i, t_flags flag)
+int		type_u(uintmax_t i, t_flags flag)
 {
 	int f;
 	int j;
@@ -284,7 +266,7 @@ int		test_u1(uintmax_t i, t_flags flag)
     return(f);
 }
 
-int		test_s1(char *str, t_flags flag)
+int		type_s(char *str, t_flags flag)
 {
 	int f;
 	int i;
@@ -305,7 +287,7 @@ int		test_s1(char *str, t_flags flag)
 	return(f);
 }
 
-int		test_d1(intmax_t i, t_flags flag)
+int		type_d(intmax_t i, t_flags flag)
 {
 	int f;
 	char *number;
@@ -356,7 +338,6 @@ int		ft_printf(char *format, ...)
 	int i;
 	int f;
 	int x;
-	int b;
 	t_flags flag;
 
 	f = 0;
@@ -371,45 +352,41 @@ int		ft_printf(char *format, ...)
 		f++;
 	}
 	if (format[i] == '\0')
-	{
-		//	write(1, &format[i], 1);
 		return (f);
-	}
 	va_start(ap, format);
 	while (format[i])
 	{	
 		if (format[i] == '%')
 		{
-			b = 0;
 			x = check_percent(&format[i]);
 			flag = check_flags(&format[i], x);
 			check_s_flags(&format[i], x, &flag);
-			if ((b = my_ft_strchr(&format[i], 'd', x , b))
-				|| (b = my_ft_strchr(&format[i], 'i', x, b)))
+			if ((my_ft_strchr(&format[i], 'd', x))
+				|| (my_ft_strchr(&format[i], 'i', x)))
 				f = use_d_flags(flag, f, ap, 0);
-			else if ((b = my_ft_strchr(&format[i], 's', x, b)))
+			else if ((my_ft_strchr(&format[i], 's', x)))
 				f = use_s_flags(flag, f, ap, 0);
-//			else if ((b = my_ft_strchr(&format[i], 'S', x, b)))
+//			else if ((my_ft_strchr(&format[i], 'S', x)))
 //				f = use_s_flags(flag, f, ap, 1);
-			else if (my_ft_strchr(&format[i], 'u', x, b))
+			else if (my_ft_strchr(&format[i], 'u', x))
 					f = use_u_flags(flag, f, ap, 0);
-			else if (my_ft_strchr(&format[i], 'x', x, b))
+			else if (my_ft_strchr(&format[i], 'x', x))
 				f = use_x_flags(flag, f, ap, 0);			
-			else if (my_ft_strchr(&format[i], 'X', x, b))
+			else if (my_ft_strchr(&format[i], 'X', x))
 				f = use_x_flags(flag, f, ap, 1);			
-			else if (my_ft_strchr(&format[i], 'o', x, b))
+			else if (my_ft_strchr(&format[i], 'o', x))
 				f = use_o_flags(flag, f, ap, 0);			
-			else if (my_ft_strchr(&format[i], 'O', x, b))
+			else if (my_ft_strchr(&format[i], 'O', x))
 				f = use_o_flags(flag, f, ap, 1);			
-			else if (my_ft_strchr(&format[i], 'c', x, b))
+			else if (my_ft_strchr(&format[i], 'c', x))
 				f = use_c_flags(flag, f, ap);
-			else if (my_ft_strchr(&format[i], 'C', x, b))
+			else if (my_ft_strchr(&format[i], 'C', x))
 				f = use_c_flags(flag, f, ap);						
-			else if (my_ft_strchr(&format[i], 'D', x,  b))
+			else if (my_ft_strchr(&format[i], 'D', x))
 				f = use_d_flags(flag, f, ap, 1);			
-			else if (my_ft_strchr(&format[i], 'U', x, b))
+			else if (my_ft_strchr(&format[i], 'U', x))
 				f = use_u_flags(flag, f, ap, 1);
-			else if (my_ft_strchr(&format[i], 'p', x, b))
+			else if (my_ft_strchr(&format[i], 'p', x))
 				f = use_p_flags(flag, f, ap);
 			else
 			{
@@ -418,7 +395,7 @@ int		ft_printf(char *format, ...)
 				if (!check_format(&format[i + 1]) 
 					|| (!check_type(&format[i + 1], x)))
 				 {
-					 f = test_c1(my_ft_isprint(&format[i + 1], x), flag) + f;
+					 f = type_c(my_ft_isprint(&format[i + 1], x), flag) + f;
 					 i++;
 				 }
 			}
@@ -447,13 +424,12 @@ int main()
 {
 	int i;
 
-	ft_printf("%-d", -42);
+	ft_printf("%c %d %i", 0, 44, 24);
 	write (1, "\n", 1);
-	i = printf("%-d", -42);
+	i = printf("%c %d %i", 0, 44, 24);
 	printf("%d\n", i);
 
 	return(0);
 
 }
 */
-

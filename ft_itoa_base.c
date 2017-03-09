@@ -6,14 +6,14 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:43:39 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 19:52:57 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 13:38:07 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_printf.h"
 
-int		check_flag(int a, int flag)
+int			check_flag(int a, int flag)
 {
 	if (flag == 0)
 		a = a + 39;
@@ -30,7 +30,7 @@ int			int_len(intmax_t nbr, int base)
 	if (nbr < 0 && base == 10)
 		i++;
 	if (nbr == 0)
-		return(1);
+		return (1);
 	while (nbr != 0)
 	{
 		nbr = nbr / base;
@@ -41,9 +41,9 @@ int			int_len(intmax_t nbr, int base)
 
 char		*ft_itoa_base(intmax_t nbr, int base, int flag)
 {
-	int a;
-	int f;
-	char *mass;
+	int		a;
+	int		f;
+	char	*mass;
 
 	f = int_len(nbr, base);
 	mass = (char*)malloc(sizeof(char) * (f + 1));
@@ -63,6 +63,5 @@ char		*ft_itoa_base(intmax_t nbr, int base, int flag)
 		mass[f - 1] = a + '0';
 		f--;
 	}
-	return(mass);
+	return (mass);
 }
-
