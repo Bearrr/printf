@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 19:51:08 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/08 20:01:34 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,29 +300,6 @@ int		test_s1(char *str, t_flags flag)
 	}
 	f = wr_str_accuracy(flag, f, str);
 	f = str_accuracy_work(flag, str) + f;
-/*	if (flag.accuracy > (int)ft_strlen(str))
-		while (str[i])
-		{
-			write(1, &str[i], 1);
-			i++;
-			f++;
-		}
-	else 
-		while (j != 0)
-		{
-			write(1, &str[i], 1);
-			j--;
-			f++;
-			i++;
-		}
-	if (flag.accuracy == 0)
-		while (str[i])
-		{
-			write(1, &str[i], 1);
-4			i++;
-			f++;
-		}
-*/
 	if (flag.minus != 0)
 		f = str_width_work(flag, str, 0) + f;
 	return(f);
@@ -336,7 +313,6 @@ int		test_d1(int i, t_flags flag)
 
 	f = 0;
 	j = 0;
-//	printf("YA TYT %d\n", i);
 	number = NULL;
 	if (flag.minus != 0 || flag.accuracy != 0)
         flag.zero = 0;
@@ -466,18 +442,18 @@ int		ft_printf(char *format, ...)
 //	printf("%d\n", f);
 	return (f);
 }
-/*
+
 int main()
 {
 	int i;
 
-	ft_printf("%-i", -42);
+	ft_printf("%-D", -42);
 	write (1, "\n", 1);
-	i = printf("%-i", -42);
+	i = printf("%-D", -42);
 	printf("%d\n", i);
 
 	return(0);
 
 }
-*/
+
 

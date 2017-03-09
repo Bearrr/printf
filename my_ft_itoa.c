@@ -6,22 +6,18 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 14:31:54 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 19:12:31 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:58:53 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 #include "ft_printf.h"
 
-
-static	int	len(long int b)
+static int		len(long int b)
 {
-	int		c;
+	int			c;
 
 	c = 0;
-//	if (b < 0)
-//		c++;
 	if (b == 0)
 		return (1);
 	while (b != 0)
@@ -32,10 +28,10 @@ static	int	len(long int b)
 	return (c);
 }
 
-char		*my_ft_itoa(long int n, int flag)
+char			*my_ft_itoa(long int n, int flag)
 {
-	int f;
-	char	*mass;
+	int			f;
+	char		*mass;
 	long int	a;
 
 	a = 0;
@@ -60,7 +56,5 @@ char		*my_ft_itoa(long int n, int flag)
 		mass[f - 1] = a + '0';
 		f--;
 	}
-	if (n < 10 && n > 0)
-		mass[0] = n + '0';
 	return (mass);
 }

@@ -6,13 +6,13 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:48:35 by ireva             #+#    #+#             */
-/*   Updated: 2017/02/10 17:52:58 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 12:01:13 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	 my_ft_strchr(const char *s, int c, int n, int counter)
+int		my_ft_strchr(const char *s, int c, int n, int counter)
 {
 	counter += 1;
 	if ((char)c == '\0')
