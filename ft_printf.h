@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:13:58 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 18:18:13 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 12:46:56 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		width_work(t_flags flag, intmax_t i);
 int		accuracy_work(t_flags flag, int i);
 void	check_s_flags(char * format, int x, t_flags *flag);
 int		use_d_flags(t_flags flag, int f, va_list ap, int size);
-int		test1_d(intmax_t i, t_flags flag);
+int		test_d1(intmax_t i, t_flags flag);
 int		use_u_flags(t_flags flag, int f, va_list ap, int size);
 int		test1_u(uintmax_t i, t_flags flag);
 char	*ft_uitoa_base(uintmax_t nbr, int base, int flag);

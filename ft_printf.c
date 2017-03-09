@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:44:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 12:36:33 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 12:48:18 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,7 +305,7 @@ int		test_s1(char *str, t_flags flag)
 	return(f);
 }
 
-int		test_d1(int i, t_flags flag)
+int		test_d1(intmax_t i, t_flags flag)
 {
 	int f;
 	char *number;
@@ -447,9 +447,9 @@ int main()
 {
 	int i;
 
-	ft_printf("%-D", -42);
+	ft_printf("%-d", -42);
 	write (1, "\n", 1);
-	i = printf("%-D", -42);
+	i = printf("%-d", -42);
 	printf("%d\n", i);
 
 	return(0);
