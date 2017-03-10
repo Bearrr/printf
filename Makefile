@@ -6,7 +6,7 @@
 #    By: ireva <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 16:56:28 by ireva             #+#    #+#              #
-#    Updated: 2017/03/08 16:49:42 by ireva            ###   ########.fr        #
+#    Updated: 2017/03/09 17:29:36 by ireva            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,22 +19,18 @@ OBJECTS =						\
 			./accuracy.o		\
 			./f_flags.o			\
 			./ft_itoa_base.o	\
-			./my_ft_itoa.o		\
 			./ft_uitoa_base.o	\
 			./s_flags.o			\
 			./width.o			\
 			./work_with_c.o		\
 			./work_with_o.o		\
 			./work_with_s.o		\
-			./my_ft_strchr.o	\
 			./ft_atoi.o			\
-			./ft_putchar.o		\
-			./ft_strchr.o		\
-			./ft_strchr.o		\
-			./ft_strcmp.o		\
-			./ft_strlen.o		\
-			./ft_strnew.o		\
-			./my_ft_isprint.o	
+			./lib_func.o		\
+			./checkers.o		\
+			./work_with_u.o		\
+			./work_with_x.o		\
+			./my_lib_func.o				
 all : $(NAME)
 $(NAME) : $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)

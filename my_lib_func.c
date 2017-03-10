@@ -1,17 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_ft_itoa.c                                       :+:      :+:    :+:   */
+/*   my_lib_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 14:31:54 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 11:58:53 by ireva            ###   ########.fr       */
+/*   Created: 2017/03/09 17:23:54 by ireva             #+#    #+#             */
+/*   Updated: 2017/03/09 17:47:57 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
+
+char			my_ft_isprint(char *str, int x)
+{
+	int			j;
+
+	j = 0;
+	while (x > j)
+	{
+		while ((str[j] >= 48 && str[j] <= 57)
+			|| str[j] == '.' || str[j] == '-' || ft_strchr("hljz", str[j]))
+			j++;
+		if (str[j] >= '!' && str[j] <= '~')
+			return (str[j]);
+		j++;
+	}
+	return (str[j]);
+}
 
 static int		len(long int b)
 {
@@ -41,8 +57,7 @@ char			*my_ft_itoa(long int n, int flag)
 	mass = ft_strnew(f);
 	if (mass == NULL)
 		return (NULL);
-	if (flag == 1 && n < 0)
-		mass[0] = '-';
+	(flag == 1 && n < 0) ? mass[0] = '-' : 0;
 	if (flag == 2 && n > 0)
 		mass[0] = '+';
 	if (n == 0)
@@ -50,11 +65,28 @@ char			*my_ft_itoa(long int n, int flag)
 	while (n != 0)
 	{
 		a = n % 10;
-		if (a < 0)
-			a = -a;
+		(a < 0) ? a = -a : 0;
 		n = n / 10;
 		mass[f - 1] = a + '0';
 		f--;
 	}
 	return (mass);
+}
+
+int				my_ft_strchr(const char *s, int c, int n)
+{
+	int counter;
+
+	counter = 1;
+	if ((char)c == '\0')
+		return (0);
+	while (n != 0)
+	{
+		if (*s == (char)c)
+			return (counter);
+		s++;
+		n--;
+		counter++;
+	}
+	return (0);
 }

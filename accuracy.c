@@ -6,20 +6,11 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 15:57:45 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 20:15:47 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/09 18:08:38 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		wr_uaccuracy(t_flags flag, uintmax_t i, int f)
-{
-	if (flag.minus == 0)
-		f = uwidth_work(flag, i, 0) + f;
-	if (flag.accuracy == 0 && i == 0)
-		return (f);
-	return (f);
-}
 
 int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
 {
@@ -111,34 +102,6 @@ int		saccuracy_work(t_flags flag, char *number)
 
 	f = 0;
 	j = ft_strlen(number);
-	if (flag.accuracy != 0)
-	{
-		if (flag.accuracy > j)
-		{
-			while (j < flag.accuracy)
-			{
-				write(1, "0", 1);
-				j++;
-				f++;
-			}
-		}
-	}
-	return (f);
-}
-
-int		uaccuracy_work(t_flags flag, int i)
-{
-	int f;
-	int j;
-
-	f = 0;
-	j = int_lens(i, 10);
-	if (flag.hash != 0 && flag.width != 0)
-	{
-		write(1, "0", 1);
-		f++;
-		j += 1;
-	}
 	if (flag.accuracy != 0)
 	{
 		if (flag.accuracy > j)

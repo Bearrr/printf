@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:09:01 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/08 20:24:32 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 14:47:02 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int		c_width_work(t_flags flag, int fleg)
 	if (fleg == 1)
 		j += 2;
 	if (flag.width != 0)
-	{
-		if (flag.width > j)
-		{
-			while (j < flag.width)
-			{
-				if (flag.zero != 0)
-					write(1, "0", 1);
-				else
-					write(1, " ", 1);
-				f++;
-				j++;
-			}
-		}
-	}
+		f = width_writter(flag, j, f);
+	return (f);
+}
+
+int		type_c(char c, t_flags flag)
+{
+	int f;
+
+	f = 0;
+	f = wr_c_accuracy(flag, f);
+	ft_putchar(c);
+	f++;
+	if (flag.minus != 0)
+		f = c_width_work(flag, c) + f;
 	return (f);
 }

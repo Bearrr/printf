@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 17:04:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 11:54:05 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 14:50:07 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,7 @@ int		str_width_work(t_flags flag, char *number, int fleg)
 	if (fleg == 1)
 		j += 2;
 	if (flag.width != 0)
-		if (flag.width > j)
-		{
-			while (j < flag.width)
-			{
-				if (flag.zero != 0)
-					write(1, "0", 1);
-				else
-					write(1, " ", 1);
-				f++;
-				j++;
-			}
-		}
+		f = width_writter(flag, j, f);
 	return (f);
 }
 
@@ -98,7 +87,8 @@ int		ustr_width_work(t_flags flag, char *number, int fleg)
 	if (fleg == 1)
 		j += 2;
 	if (flag.width != 0)
-	{
+		f = width_writter(flag, j, f);
+/*	{
 		if (flag.width > j)
 		{
 			while (j < flag.width)
@@ -111,6 +101,27 @@ int		ustr_width_work(t_flags flag, char *number, int fleg)
 				j++;
 			}
 		}
+		}*/
+	return (f);
+}
+
+int		type_s(char *str, t_flags flag)
+{
+	int f;
+	int i;
+	int j;
+
+	f = 0;
+	i = 0;
+	j = flag.accuracy;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
 	}
+	f = wr_str_accuracy(flag, f, str);
+	f = str_accuracy_work(flag, str) + f;
+	if (flag.minus != 0)
+		f = str_width_work(flag, str, 0) + f;
 	return (f);
 }

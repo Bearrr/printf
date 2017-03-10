@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 16:01:46 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 13:55:01 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 14:42:15 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,34 @@ void		check_zero(char *format, t_flags *flag)
 	}
 }
 
-int			int_lenth(char *str)
+int			int_lenth(char *str, int *i, t_flags *flag, char *format)
 {
-	int		i;
+	int		j;
+	int		k;
+	char	*arr;
 
-	i = 0;
-	while (str[i] >= 48 && str[i] <= 57)
-		i++;
-	return (i);
+	j = 0;
+	k = 0;
+	while (str[j] >= 48 && str[j] <= 57)
+		j++;
+	arr = ft_strnew(j);
+	while (j > 0)
+	{
+		arr[k] = format[(*i)];
+		k++;
+		(*i)++;
+		j--;
+	}
+	flag->width = ft_atoi(arr);
+	free(arr);
+	return (j);
 }
 
 void		check_width(char *format, t_flags *flag, int x)
 {
 	int		i;
-	char	*arr;
-	int		j;
-	int		k;
 
 	i = 0;
-	k = 0;
 	while (x > i)
 	{
 		if (format[i] >= 48 && format[i] <= 57)
@@ -61,19 +70,7 @@ void		check_width(char *format, t_flags *flag, int x)
 			if (format[i] != '0')
 			{
 				if (format[i - 1] != '.')
-				{
-					j = int_lenth(&format[i]);
-					arr = ft_strnew(j);
-					while (j > 0)
-					{
-						arr[k] = format[i];
-						k++;
-						i++;
-						j--;
-					}
-					flag->width = ft_atoi(arr);
-					free(arr);
-				}
+					int_lenth(&format[i], &i, flag, format);
 				else
 				{
 					while (format[i] >= 48 && format[i] <= 57)
@@ -81,24 +78,33 @@ void		check_width(char *format, t_flags *flag, int x)
 				}
 			}
 		}
-		k = 0;
 		i++;
 	}
+}
+
+int			int_acc_len(char *str)
+{
+	int		j;
+
+	j = 0;
+	while (str[j] >= 48 && str[j] <= 57)
+		j++;
+	return (j);
 }
 
 void		check_accuracy(char *format, t_flags *flag)
 {
 	int		i;
-	int		j;
 	char	*arr;
 	int		k;
+	int		j;
 
 	i = 0;
 	k = 0;
 	while (format[i] != '.')
 		i++;
 	i++;
-	j = int_lenth(&format[i]);
+	j = int_acc_len(&format[i]);
 	arr = ft_strnew(j);
 	while (j > 0)
 	{
