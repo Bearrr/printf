@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:09:01 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/10 14:47:02 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/11 13:22:24 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@ int		type_c(char c, t_flags flag)
 	f++;
 	if (flag.minus != 0)
 		f = c_width_work(flag, c) + f;
+	return (f);
+}
+
+int		use_c_flags(t_flags flag, int f, va_list ap)
+{
+	f = (type_c(va_arg(ap, int), flag) + f);
 	return (f);
 }

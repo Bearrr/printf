@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 17:04:49 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/10 14:50:07 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 15:29:21 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ int		str_accuracy_work(t_flags flag, char *number)
 	j = 0;
 	i = flag.accuracy;
 	if (flag.accuracy > (int)ft_strlen(number))
-		while (number[j])
-		{
-			write(1, &number[j], 1);
-			j++;
-			f++;
-		}
+		f = number_writter(number, f);
 	else
 		while (i != 0)
 		{
@@ -37,12 +32,7 @@ int		str_accuracy_work(t_flags flag, char *number)
 			j++;
 		}
 	if (flag.accuracy == 0)
-		while (number[j])
-		{
-			write(1, &number[j], 1);
-			j++;
-			f++;
-		}
+		f = number_writter(number, f);
 	return (f);
 }
 
@@ -88,20 +78,6 @@ int		ustr_width_work(t_flags flag, char *number, int fleg)
 		j += 2;
 	if (flag.width != 0)
 		f = width_writter(flag, j, f);
-/*	{
-		if (flag.width > j)
-		{
-			while (j < flag.width)
-			{
-				if (flag.zero != 0)
-					write(1, "0", 1);
-				else
-					write(1, " ", 1);
-				f++;
-				j++;
-			}
-		}
-		}*/
 	return (f);
 }
 

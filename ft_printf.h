@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:13:58 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/10 15:08:02 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 22:08:27 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ int				check_format(char *format);
 int				check_percent(char *format);
 int				width_writter(t_flags flag, int j, int f);
 int				number_writter(char *number, int f);
+void			check_zero(char *format, t_flags *flag);
+int				neg_accuracy(t_flags flag, int f);
+int				no_type(char *format, int x, t_flags flag, int *i);
+int				wr_rest(int *i, char *format, int f, int x);
 
 #endif

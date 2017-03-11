@@ -6,34 +6,12 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 16:01:46 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/10 14:42:15 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 16:03:05 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-void		check_zero(char *format, t_flags *flag)
-{
-	int		i;
-
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '0')
-		{
-			if ((format[i - 1] >= 48 && format[i - 1] <= 57)
-				|| format[i - 1] == '.')
-				flag->zero = 0;
-			else
-			{
-				flag->zero = 1;
-				break ;
-			}
-		}
-		i++;
-	}
-}
 
 int			int_lenth(char *str, int *i, t_flags *flag, char *format)
 {
@@ -120,22 +98,17 @@ void		check_accuracy(char *format, t_flags *flag)
 	free(arr);
 }
 
-void		flags_zero(t_flags *flag)
-{
-	flag->hash = 0;
-	flag->zero = 0;
-	flag->plus = 0;
-	flag->minus = 0;
-	flag->space = 0;
-	flag->accuracy = 0;
-	flag->width = 0;
-}
-
 t_flags		check_flags(char *format, int x)
 {
 	t_flags flag;
 
-	flags_zero(&flag);
+	flag.hash = 0;
+	flag.zero = 0;
+	flag.plus = 0;
+	flag.minus = 0;
+	flag.space = 0;
+	flag.accuracy = 0;
+	flag.width = 0;
 	if (my_ft_strchr(format, '#', x))
 		flag.hash = 1;
 	if (my_ft_strchr(format, '+', x))

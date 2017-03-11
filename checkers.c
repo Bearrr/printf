@@ -6,15 +6,15 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:07:13 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 15:27:44 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 16:04:17 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		check_type(char *format, int x)
+int			check_type(char *format, int x)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (x > i)
@@ -33,9 +33,9 @@ int		check_type(char *format, int x)
 	return (0);
 }
 
-int		check_format(char *format)
+int			check_format(char *format)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (format[i])
@@ -47,10 +47,10 @@ int		check_format(char *format)
 	return (1);
 }
 
-int		check_percent(char *format)
+int			check_percent(char *format)
 {
-	int j;
-	int i;
+	int		j;
+	int		i;
 
 	i = 0;
 	if (format[i + 1] == '\0')
@@ -68,4 +68,26 @@ int		check_percent(char *format)
 	if (ft_strchr("sSpdDioOuUxXcC", format[i]))
 		j++;
 	return (j);
+}
+
+void		check_zero(char *format, t_flags *flag)
+{
+	int		i;
+
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '0')
+		{
+			if ((format[i - 1] >= 48 && format[i - 1] <= 57)
+				|| format[i - 1] == '.')
+				flag->zero = 0;
+			else
+			{
+				flag->zero = 1;
+				break ;
+			}
+		}
+		i++;
+	}
 }

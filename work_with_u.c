@@ -6,7 +6,7 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:04:21 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/10 14:47:16 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 15:34:27 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,9 @@ int			uwidth_work(t_flags flag, uintmax_t i, int fleg)
 int			type_u(uintmax_t i, t_flags flag)
 {
 	int		f;
-	int		j;
 	char	*number;
 
 	f = 0;
-	j = 0;
 	number = NULL;
 	if (flag.accuracy == -1 && i == 0)
 	{
@@ -91,15 +89,31 @@ int			type_u(uintmax_t i, t_flags flag)
 	f = wr_uaccuracy(flag, i, f) + f;
 	f = uaccuracy_work(flag, i) + f;
 	number = ft_uitoa_base(i, 10, 2);
-	while (number[j])
-	{
-		write(1, &number[j], 1);
-		j++;
-		f++;
-	}
+	f = number_writter(number, f);
 	if (flag.minus != 0)
 		f = uwidth_work(flag, i, 0) + f;
 	if (number != NULL)
 		free(number);
+	return (f);
+}
+
+int			use_u_flags(t_flags flag, int f, va_list ap, int size)
+{
+	if (size == 1)
+		f = ((type_u(va_arg(ap, long), flag)) + f);
+	else if (ft_strcmp(flag.letter, "j") == 0)
+		f = ((type_u(va_arg(ap, uintmax_t), flag)) + f);
+	else if (ft_strcmp(flag.letter, "z") == 0)
+		f = ((type_u(va_arg(ap, size_t), flag)) + f);
+	else if (ft_strcmp(flag.letter, "ll") == 0)
+		f = ((type_u(va_arg(ap, unsigned long long), flag)) + f);
+	else if (ft_strcmp(flag.letter, "l") == 0)
+		f = ((type_u(va_arg(ap, unsigned long), flag)) + f);
+	else if (ft_strcmp(flag.letter, "h") == 0)
+		f = (type_u((unsigned short)va_arg(ap, int), flag) + f);
+	else if (ft_strcmp(flag.letter, "hh") == 0)
+		f = (type_u((unsigned char)va_arg(ap, int), flag) + f);
+	else
+		f = (type_u(va_arg(ap, unsigned int), flag) + f);
 	return (f);
 }

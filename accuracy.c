@@ -6,53 +6,35 @@
 /*   By: ireva <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 15:57:45 by ireva             #+#    #+#             */
-/*   Updated: 2017/03/09 18:08:38 by ireva            ###   ########.fr       */
+/*   Updated: 2017/03/10 16:58:54 by ireva            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
+int		pl_mn_accuracy(char **number, int f, intmax_t i, int fleg)
 {
-	int p;
-
-	p = 0;
-	if (flag.minus == 0 && flag.plus != 0
-		&& flag.zero == 0 && flag.accuracy == 0)
-	{
-		f = width_work(flag, i) + f;
-		p = 1;
-	}
-	if (flag.zero != 0 && i < 0 && flag.accuracy == 0)
+	if (fleg == 0)
 	{
 		write(1, "-", 1);
 		f++;
 		*number = my_ft_itoa(i, 0);
 	}
-	else if (flag.plus != 0 && flag.minus == 0 && flag.accuracy == 0 && i >= 0)
+	if (fleg == 1)
 	{
 		write(1, "+", 1);
 		f++;
 		*number = my_ft_itoa(i, 0);
 	}
-	else if (flag.plus != 0 && flag.minus != 0
-			&& flag.zero == 0 && flag.accuracy == 0)
-	{
-		if (i > 0)
-			*number = my_ft_itoa(i, 2);
-		if (i < 0)
-			*number = my_ft_itoa(i, 1);
-	}
-	else if (flag.accuracy != 0 && i < 0)
-		*number = my_ft_itoa(i, 0);
-	else
-		*number = ft_itoa_base(i, 10, 2);
+	return (f);
+}
+
+int		wrs_accuracy(t_flags flag, intmax_t i, int p, int f)
+{
 	if (flag.minus == 0 && p == 0)
 	{
-		if (flag.space == 0)
-			f = width_work(flag, i) + f;
-		if (flag.space != 0)
-			f = width_work(flag, i);
+		(flag.space == 0) ? f = width_work(flag, i) + f : 0;
+		(flag.space != 0) ? f = width_work(flag, i) : 0;
 	}
 	if (flag.accuracy == 0 && i == 0)
 		return (f);
@@ -66,6 +48,35 @@ int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
 		write(1, "-", 1);
 		f++;
 	}
+	return (f);
+}
+
+int		wr_accuracy(t_flags flag, intmax_t i, int f, char **number)
+{
+	int p;
+
+	p = 0;
+	if (flag.minus == 0 && flag.plus != 0
+		&& flag.zero == 0 && flag.accuracy == 0)
+	{
+		f = width_work(flag, i) + f;
+		p = 1;
+	}
+	if (flag.zero != 0 && i < 0 && flag.accuracy == 0)
+		f = pl_mn_accuracy(number, f, i, 0);
+	else if (flag.plus != 0 && flag.minus == 0 && flag.accuracy == 0 && i >= 0)
+		f = pl_mn_accuracy(number, f, i, 1);
+	else if (flag.plus != 0 && flag.minus != 0
+			&& flag.zero == 0 && flag.accuracy == 0)
+	{
+		(i > 0) ? *number = my_ft_itoa(i, 2) : 0;
+		(i < 0) ? *number = my_ft_itoa(i, 1) : 0;
+	}
+	else if (flag.accuracy != 0 && i < 0)
+		*number = my_ft_itoa(i, 0);
+	else
+		*number = ft_itoa_base(i, 10, 2);
+	f = wrs_accuracy(flag, i, p, f);
 	return (f);
 }
 
@@ -113,26 +124,6 @@ int		saccuracy_work(t_flags flag, char *number)
 				f++;
 			}
 		}
-	}
-	return (f);
-}
-
-int		wr_saccuracy(t_flags flag, uintmax_t i, int f, char *number)
-{
-	if ((flag.zero != 0 && flag.accuracy == 0)
-		|| (flag.zero == 0 && flag.accuracy == 0 && flag.width == 0))
-	{
-		write(1, "0x", 2);
-		f += 2;
-	}
-	if (flag.minus == 0)
-		f = swidth_work(flag, number, 1) + f;
-	if (flag.accuracy == 0 && i == 0 && flag.width == 0)
-		return (f);
-	if ((flag.width != 0 && flag.zero == 0) || flag.accuracy != 0)
-	{
-		write(1, "0x", 2);
-		f += 2;
 	}
 	return (f);
 }

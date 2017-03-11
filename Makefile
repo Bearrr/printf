@@ -6,7 +6,7 @@
 #    By: ireva <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 16:56:28 by ireva             #+#    #+#              #
-#    Updated: 2017/03/09 17:29:36 by ireva            ###   ########.fr        #
+#    Updated: 2017/03/10 16:57:23 by ireva            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,7 +30,8 @@ OBJECTS =						\
 			./checkers.o		\
 			./work_with_u.o		\
 			./work_with_x.o		\
-			./my_lib_func.o				
+			./my_lib_func.o		\
+			./work_with_p.o				
 all : $(NAME)
 $(NAME) : $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)
